@@ -26,11 +26,9 @@ export default function App() {
 
 					dispatch(postTodos(title));
 					e.currentTarget.reset();
-				}}>
-				<input
-					type="text"
-					ref={titleRef}
-				/>
+				}}
+			>
+				<input type="text" ref={titleRef} />
 				<button type="submit">Add</button>
 			</form>
 			<ul>
@@ -40,7 +38,8 @@ export default function App() {
 							<button
 								onClick={() => {
 									dispatch(toggleTodos(item.id));
-								}}>
+								}}
+							>
 								Check
 							</button>
 
@@ -49,7 +48,8 @@ export default function App() {
 							<button
 								onClick={() => {
 									dispatch(deleteTodos(item.id));
-								}}>
+								}}
+							>
 								Delete
 							</button>
 						</li>
@@ -65,7 +65,8 @@ export default function App() {
 							<button
 								onClick={() => {
 									dispatch(toggleTodos(item.id));
-								}}>
+								}}
+							>
 								Undo
 							</button>
 
@@ -74,7 +75,8 @@ export default function App() {
 							<button
 								onClick={() => {
 									dispatch(deleteTodos(item.id));
-								}}>
+								}}
+							>
 								Delete
 							</button>
 						</li>

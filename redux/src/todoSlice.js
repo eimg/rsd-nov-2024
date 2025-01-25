@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getTodos = createAsyncThunk("todos", async () => {
 	const res = await fetch("http://localhost:8000/todos");
-    return await res.json();
+	return await res.json();
 });
 
 export const deleteTodos = createAsyncThunk("todo/delete", async id => {
@@ -16,12 +16,12 @@ export const deleteTodos = createAsyncThunk("todo/delete", async id => {
 
 export const postTodos = createAsyncThunk("todo/add", async title => {
 	const res = await fetch("http://localhost:8000/todos", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title }),
-    });
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ title }),
+	});
 
 	return await res.json();
 });
@@ -57,27 +57,29 @@ export const todoSlice = createSlice({
 			});
 		},
 	},
-    extraReducers: builder => {
-        builder
-            .addCase(getTodos.fulfilled, (state, action) => {
-                state.tasks = action.payload;
-            })
-            .addCase(postTodos.fulfilled, (state, action) => {
-                state.tasks.push(action.payload);
-            })
-            .addCase(deleteTodos.fulfilled, (state, action) => {
-                state.tasks = state.tasks.filter(item => item.id != action.payload.id);
-            })
-            .addCase(toggleTodos.fulfilled, (state, action) => {
-                state.tasks = state.tasks.map(item => {
-                    if (item.id == action.payload.id) {
-                        item.done = !item.done;
-                    }
-    
-                    return item;
-                });
-            })
-    }
+	extraReducers: builder => {
+		builder
+			.addCase(getTodos.fulfilled, (state, action) => {
+				state.tasks = action.payload;
+			})
+			.addCase(postTodos.fulfilled, (state, action) => {
+				state.tasks.push(action.payload);
+			})
+			.addCase(deleteTodos.fulfilled, (state, action) => {
+				state.tasks = state.tasks.filter(
+					item => item.id != action.payload.id
+				);
+			})
+			.addCase(toggleTodos.fulfilled, (state, action) => {
+				state.tasks = state.tasks.map(item => {
+					if (item.id == action.payload.id) {
+						item.done = !item.done;
+					}
+
+					return item;
+				});
+			});
+	},
 });
 
 export const { add, del, toggle } = todoSlice.actions;

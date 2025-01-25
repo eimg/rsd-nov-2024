@@ -86,7 +86,7 @@ export default function Login() {
                 </form>
 
                 <Typography align="center">
-                    Don't have an account?{" "}
+                    Don&amp;t have an account?{" "}
                     <Link
                         to="/register"
                         style={{ 
